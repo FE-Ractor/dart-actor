@@ -9,6 +9,7 @@ environment:
 
 dependencies:
   event_bus: 0.4.1
+  uuid: ^1.0.1
 
 dev_dependencies:
   test: ^0.12.0

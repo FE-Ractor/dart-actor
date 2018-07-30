@@ -1,21 +1,34 @@
 import 'package:dart_actor/dart_actor.dart';
+import 'package:dart_actor/src/actor-ref.dart';
+import 'package:dart_actor/src/actor-receive-builder.dart';
 
 abstract class AbstractActor {
-  ActorContext actorContext;
+  ActorContext context;
 
   ActorReceive createReceive();
 
-  static void getSelf() {
-    // @todo
+  ActorRef getSelf() {
+    return this.context.sender;
   }
 
-  
-}
+  ActorRef getSender() {
+    return this.context.sender;
+  }
 
-class Actor extends AbstractActor {
+  ActorReceiveBuilder receiveBuilder () {
+    return new ActorReceiveBuilder();
+  }
 
-  @override
-  ActorReceive createReceive() {
-    return new ActorReceive([]);
+  void receive() {
+    var listeners = this.createReceive().listeners;
+    this.context.scheduler.replaceLiteners(listeners);
+  }
+
+  void preStart();
+
+  void postStop();
+
+  void postError(err) {
+    throw err;
   }
 }
