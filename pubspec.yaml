@@ -1,14 +1,14 @@
 name: dart_actor
-description: A starting point for Dart libraries or applications.
+description: experimental akka actor implementation for using in dart.
 version: 0.0.1
-#homepage: https://www.example.com
-#author: sakuraash <email@example.com>
+#homepage: https://github.com/Aaaaash/dart-actor
+#author: Aaaaash <binshao54@gmail.com>
 
 environment:
   sdk: '>=1.20.1 <2.0.0'
 
-#dependencies:
-#  path: ^1.4.1
+dependencies:
+  event_bus: 0.4.1
 
 dev_dependencies:
   test: ^0.12.0

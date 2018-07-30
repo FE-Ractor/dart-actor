@@ -1,8 +1,7 @@
-/// Support for doing something awesome.
-///
-/// More dartdocs go here.
 library dart_actor;
 
-export 'src/dart_actor_base.dart';
-
-// TODO: Export any libraries intended for clients of this package.
+export 'src/actor.dart';
+export 'src/actor-context.dart';
+export 'src/actor-receive.dart';
+export 'src/message.dart';
+export 'src/listener.dart';
