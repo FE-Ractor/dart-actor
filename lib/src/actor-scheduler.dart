@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'package:event_bus/event_bus.dart';
 
 import 'package:dart_actor/src/listener.dart';
@@ -6,13 +7,14 @@ import 'package:dart_actor/src/actor.dart';
 class ActorScheduler {
   Listener defaultListeners;
   EventBus eventStream;
-  String event;
+  Object event;
   List<Listener> listeners;
   AbstractActor owner;
+  StreamSubscription _streamSubscriptions;
 
   ActorScheduler(this.eventStream, this.event, this.listeners, this.owner) {
-    var reg = new RegExp(r"(/\//g)");
-    this.event = this.event.replaceAll(reg, ".");
+//    var reg = new RegExp(r"(/\//g)");
+//    this.event = this.event.replaceAll(reg, ".");
 
     this.defaultListeners =
         this.listeners.firstWhere((listener) => listener.message != null);
@@ -31,6 +33,24 @@ class ActorScheduler {
     } catch (e) {
       this.owner.postError(e);
     }
+  }
+
+  bool cancel() {
+    _streamSubscriptions.cancel();
+    return true;
+  }
+
+  bool isCancelled() {
+  return _streamSubscriptions.isPaused;
+  }
+
+  void start() {
+    _streamSubscriptions = this.eventStream.on(event).listen(callback);
+  }
+
+  void restart() {
+    cancel();
+    start();
   }
 
   void replaceLiteners(List<Listener> listeners) {

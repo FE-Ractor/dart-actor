@@ -2,18 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="81bc14ea-4435-44d7-9059-e42b19937d50" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lib/src/actor-ref.dart" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lib/src/actor-scheduler.dart" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lib/src/actor-system.dart" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/Dart_Packages.xml" afterPath="$PROJECT_DIR$/.idea/libraries/Dart_Packages.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/example/dart_actor_example.dart" afterPath="$PROJECT_DIR$/example/dart_actor_example.dart" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/dart_actor.dart" afterPath="$PROJECT_DIR$/lib/dart_actor.dart" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/src/actor-context.dart" afterPath="$PROJECT_DIR$/lib/src/actor-context.dart" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/src/actor-receive.dart" afterPath="$PROJECT_DIR$/lib/src/actor-receive.dart" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/src/actor.dart" afterPath="$PROJECT_DIR$/lib/src/actor.dart" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/src/listener.dart" afterPath="$PROJECT_DIR$/lib/src/listener.dart" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/pubspec.yaml" afterPath="$PROJECT_DIR$/pubspec.yaml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/src/actor-receive-builder.dart" afterPath="$PROJECT_DIR$/lib/src/actor-receive-builder.dart" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/src/actor-scheduler.dart" afterPath="$PROJECT_DIR$/lib/src/actor-scheduler.dart" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -48,11 +40,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="actor-receive-builder.dart" pinned="false" current-in-tab="false">
+      <file leaf-file-name="actor-receive-builder.dart" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/lib/src/actor-receive-builder.dart">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="130">
-              <caret line="5" column="21" lean-forward="false" selection-start-line="5" selection-start-column="2" selection-end-line="5" selection-end-column="21" />
+            <state relative-caret-position="286">
+              <caret line="11" column="1" lean-forward="true" selection-start-line="11" selection-start-column="1" selection-end-line="11" selection-end-column="1" />
               <folding />
             </state>
           </provider>
@@ -82,21 +74,19 @@
         <entry file="file://$PROJECT_DIR$/lib/src/actor-scheduler.dart">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="710">
-              <caret line="41" column="0" lean-forward="true" selection-start-line="41" selection-start-column="0" selection-end-line="41" selection-end-column="0" />
+              <caret line="61" column="0" lean-forward="true" selection-start-line="61" selection-start-column="0" selection-end-line="61" selection-end-column="0" />
               <folding>
-                <element signature="e#0#42#0" expanded="true" />
-                <marker date="1532960833698" expanded="true" signature="579:626" ph="{...}" />
-                <marker date="1532960833698" expanded="true" signature="1069:1140" ph="{...}" />
+                <element signature="e#0#20#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="actor-context.dart" pinned="false" current-in-tab="true">
+      <file leaf-file-name="actor-context.dart" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/lib/src/actor-context.dart">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="782">
-              <caret line="39" column="3" lean-forward="true" selection-start-line="39" selection-start-column="3" selection-end-line="39" selection-end-column="3" />
+            <state relative-caret-position="731">
+              <caret line="75" column="0" lean-forward="true" selection-start-line="75" selection-start-column="0" selection-end-line="75" selection-end-column="0" />
               <folding>
                 <element signature="e#0#32#0" expanded="true" />
               </folding>
@@ -154,7 +144,6 @@
         <option value="$PROJECT_DIR$/test/dart_actor_test.dart" />
         <option value="$PROJECT_DIR$/lib/src/dart_actor_base.dart" />
         <option value="$PROJECT_DIR$/lib/src/message.dart" />
-        <option value="$PROJECT_DIR$/lib/src/actor-receive-builder.dart" />
         <option value="$PROJECT_DIR$/lib/src/actor-system.dart" />
         <option value="$PROJECT_DIR$/lib/dart_actor.dart" />
         <option value="$PROJECT_DIR$/example/dart_actor_example.dart" />
@@ -166,6 +155,7 @@
         <option value="$PROJECT_DIR$/lib/src/actor-ref.dart" />
         <option value="$PROJECT_DIR$/lib/src/actor-scheduler.dart" />
         <option value="$PROJECT_DIR$/lib/src/actor-context.dart" />
+        <option value="$PROJECT_DIR$/lib/src/actor-receive-builder.dart" />
       </list>
     </option>
   </component>
@@ -723,12 +713,12 @@
       <option name="presentableId" value="Default" />
       <updated>1531925009377</updated>
       <workItem from="1531925011354" duration="2389000" />
-      <workItem from="1532954840661" duration="5428000" />
+      <workItem from="1532954840661" duration="7479000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="7817000" />
+    <option name="totallyTimeSpent" value="9868000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="1282" y="0" width="1278" height="1440" extended-state="0" />
@@ -937,22 +927,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/lib/src/actor-receive-builder.dart">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="130">
-          <caret line="5" column="21" lean-forward="false" selection-start-line="5" selection-start-column="2" selection-end-line="5" selection-end-column="21" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/lib/src/actor-receive.dart">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="182">
-          <caret line="7" column="0" lean-forward="false" selection-start-line="7" selection-start-column="0" selection-end-line="7" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/pubspec.lock">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -987,18 +961,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/lib/src/actor-scheduler.dart">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="710">
-          <caret line="41" column="0" lean-forward="true" selection-start-line="41" selection-start-column="0" selection-end-line="41" selection-end-column="0" />
-          <folding>
-            <element signature="e#0#42#0" expanded="true" />
-            <marker date="1532960833698" expanded="true" signature="579:626" ph="{...}" />
-            <marker date="1532960833698" expanded="true" signature="1069:1140" ph="{...}" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/lib/src/actor.dart">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="242">
@@ -1009,13 +971,39 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/lib/src/actor-scheduler.dart">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="710">
+          <caret line="61" column="0" lean-forward="true" selection-start-line="61" selection-start-column="0" selection-end-line="61" selection-end-column="0" />
+          <folding>
+            <element signature="e#0#20#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lib/src/actor-receive.dart">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="182">
+          <caret line="7" column="0" lean-forward="false" selection-start-line="7" selection-start-column="0" selection-end-line="7" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/lib/src/actor-context.dart">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="782">
-          <caret line="39" column="3" lean-forward="true" selection-start-line="39" selection-start-column="3" selection-end-line="39" selection-end-column="3" />
+        <state relative-caret-position="731">
+          <caret line="75" column="0" lean-forward="true" selection-start-line="75" selection-start-column="0" selection-end-line="75" selection-end-column="0" />
           <folding>
             <element signature="e#0#32#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lib/src/actor-receive-builder.dart">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="286">
+          <caret line="11" column="1" lean-forward="true" selection-start-line="11" selection-start-column="1" selection-end-line="11" selection-end-column="1" />
+          <folding />
         </state>
       </provider>
     </entry>
