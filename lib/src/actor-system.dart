@@ -1,4 +1,4 @@
-import 'package:event_bus/event_bus.dart';
+import 'package:dart_event_emitter/dart_event_emitter.dart';
 import 'package:uuid/uuid.dart';
 
 import 'package:dart_actor/src/base-event.dart';
@@ -7,7 +7,7 @@ import 'package:dart_actor/src/actor-ref.dart';
 import 'package:dart_actor/src/root-actor.dart';
 
 class ActorSystem {
-  EventBus eventStream;
+  EventEmitter eventStream;
   final String name;
   ActorRef _rootActorRef;
   static final Map<String, ActorSystem> _cache = <String, ActorSystem>{};
@@ -23,7 +23,7 @@ class ActorSystem {
   }
 
   ActorSystem._instance(this.name) {
-    eventStream = new EventBus();
+    eventStream = new EventEmitter();
     _rootActorRef = new ActorRef(new RootActor(), this, new List(), null, "root", "root");
   }
 
@@ -31,13 +31,13 @@ class ActorSystem {
     return new ActorSystem(name);
   }
 
-  void tell(BaseEvent event) {
+  void tell(String event, Object message) {
     print(event);
-    eventStream.fire(event);
+    eventStream.emit(event, message);
   }
 
-  void broadcast(BaseEvent event) {
-    eventStream.fire(event);
+  void broadcast(String event, Object message) {
+    eventStream.emit(event, message);
   }
 
   ActorRef actorOf(AbstractActor actor, [String name]) {
@@ -50,7 +50,7 @@ class ActorSystem {
   }
 
   void terminal() {
-    eventStream != null ? eventStream.destroy() : null;
+    eventStream != null ? eventStream.removeAllListeners() : null;
     _rootActorRef.getActor().context.children.clear();
   }
 

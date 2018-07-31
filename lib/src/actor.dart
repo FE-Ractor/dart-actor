@@ -8,7 +8,7 @@ abstract class AbstractActor {
   ActorReceive createReceive();
 
   ActorRef getSelf() {
-    return this.context.sender;
+    return this.context.self;
   }
 
   ActorRef getSender() {

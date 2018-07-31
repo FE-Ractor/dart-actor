@@ -1,12 +1,12 @@
 import 'dart:async';
-import 'package:event_bus/event_bus.dart';
+import 'package:dart_event_emitter/dart_event_emitter.dart';
 
 import 'package:dart_actor/src/listener.dart';
 import 'package:dart_actor/src/actor.dart';
 
 class ActorScheduler {
   Listener defaultListeners;
-  EventBus eventStream;
+  EventEmitter eventStream;
   Object event;
   List<Listener> listeners;
   AbstractActor owner;
@@ -23,6 +23,7 @@ class ActorScheduler {
   callback(Object value) {
     var listener = this.listeners.firstWhere(
         (Listener listener) => listener.message != null) ?? null;
+    print(value);
     try {
       if (listener != null) {
         return listener.callback(value);
@@ -35,16 +36,16 @@ class ActorScheduler {
   }
 
   bool cancel() {
-    _streamSubscription != null ? _streamSubscription.cancel() : null;
+    eventStream.removeListener(event, callback);
     return true;
   }
 
   bool isCancelled() {
-  return _streamSubscription.isPaused;
+    return eventStream.listeners(event).length == 0;
   }
 
   void start() {
-    _streamSubscription = this.eventStream.on(event).listen(callback);
+    this.eventStream.on(event, callback);
   }
 
   void restart() {

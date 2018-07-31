@@ -2,10 +2,14 @@ import 'package:dart_actor/src/actor.dart';
 import 'package:dart_actor/src/actor-receive.dart';
 import 'package:dart_actor/src/actor-system.dart';
 import 'package:dart_actor/src/actor-ref.dart';
+import 'package:dart_actor/src/base-event.dart';
 
 class WhoToGreet {
   String who;
   WhoToGreet(this.who);
+}
+
+class Greet {
 }
 
 class Greeting {
@@ -44,7 +48,7 @@ class Greeter extends AbstractActor {
   }
 
   _WhoToGreetCallback(WhoToGreet wtg) {
-    print('WhoToGreet is been fire: ${wtg.who}');
+    print('WhoToGreet has been fire: ${wtg.who}');
     _greeting = this._message + ", " + wtg.who;
   }
 
@@ -71,6 +75,7 @@ class Printer extends AbstractActor {
   }
 
   _callback(Greeting greeting) {
+    this.getSender().tell(new Replay(greeting.message), this.getSelf());
     print('hello');
   }
 }
@@ -84,15 +89,16 @@ main() {
       system.actorOf(new Greeter("Howdy", printerActor), "howdyGreeter");
 
   howdyGreeter.tell(new WhoToGreet("actor"));
-//  howdyGreeter.tell(new G)
+  howdyGreeter.tell(new Greet());
 
   howdyGreeter.tell(new WhoToGreet("lightbend"));
 
-//  system.tell()
+  system.tell('printerActor', new Greet());
 
   system.stop(howdyGreeter);
 
   howdyGreeter.tell(new WhoToGreet("sakura"));
+  howdyGreeter.tell(new Greet());
 //  howdyGreeter.tell()
 
   system.terminal();

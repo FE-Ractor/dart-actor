@@ -8,7 +8,7 @@ environment:
   sdk: '>=1.20.1 <2.0.0'
 
 dependencies:
-  event_bus: 0.4.1
+  dart_event_emitter: ^1.0.1
   uuid: ^1.0.1
 
 dev_dependencies:
