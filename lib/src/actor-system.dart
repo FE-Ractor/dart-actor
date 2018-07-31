@@ -23,6 +23,7 @@ class ActorSystem {
   }
 
   ActorSystem._instance(this.name) {
+    eventStream = new EventBus();
     _rootActorRef = new ActorRef(new RootActor(), this, new List(), null, "root", "root");
   }
 
@@ -31,6 +32,7 @@ class ActorSystem {
   }
 
   void tell(BaseEvent event) {
+    print(event);
     eventStream.fire(event);
   }
 

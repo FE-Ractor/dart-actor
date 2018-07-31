@@ -21,9 +21,8 @@ class ActorScheduler {
   }
 
   callback(Object value) {
-    var listener = listeners.length > 0 ? this.listeners.firstWhere(
-        (Listener listener) => listener.message != null && value is Function) : null;
-
+    var listener = this.listeners.firstWhere(
+        (Listener listener) => listener.message != null) ?? null;
     try {
       if (listener != null) {
         return listener.callback(value);

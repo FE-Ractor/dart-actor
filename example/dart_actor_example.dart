@@ -44,6 +44,7 @@ class Greeter extends AbstractActor {
   }
 
   _WhoToGreetCallback(WhoToGreet wtg) {
+    print('WhoToGreet is been fire: ${wtg.who}');
     _greeting = this._message + ", " + wtg.who;
   }
 
