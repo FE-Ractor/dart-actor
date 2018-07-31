@@ -1,7 +1,7 @@
-//import 'package:dart_actor/dart_actor.dart';
+import 'package:dart_actor/src/message.dart';
 
 class Listener<T> {
-  T message;
+  Message message;
   dynamic callback;
 
   Listener(this.message, this.callback);

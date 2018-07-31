@@ -43,8 +43,14 @@ class Greeter extends AbstractActor {
     var receiveBuilder = this
         .receiveBuilder()
         .match(WhoToGreet, _WhoToGreetCallback)
+        .match(Greet, _GreetCallBack)
         .match(Replay, _ReplayCallback);
     return receiveBuilder.build();
+  }
+
+  _GreetCallBack() {
+    print('greet');
+    this._printer.tell(new Greeting(this._greeting), this.getSelf());
   }
 
   _WhoToGreetCallback(WhoToGreet wtg) {

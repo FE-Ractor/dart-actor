@@ -1,3 +1,1 @@
-class Message {
-
-}
+typedef Message = dynamic Function([]);

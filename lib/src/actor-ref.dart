@@ -25,6 +25,7 @@ class ActorRef {
   }
 
   tell(dynamic message, [ActorRef sender]) {
+    print(message);
     this._actor.context.sender = sender ?? null;
     this._actor.context.scheduler.callback(message);
   }
