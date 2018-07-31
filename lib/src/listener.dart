@@ -1,6 +1,8 @@
 //import 'package:dart_actor/dart_actor.dart';
 
-abstract class Listener {
-  Function message;
-  dynamic callback(dynamic value);
+class Listener<T> {
+  T message;
+  dynamic callback;
+
+  Listener(this.message, this.callback);
 }
