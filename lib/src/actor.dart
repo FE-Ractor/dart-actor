@@ -20,8 +20,10 @@ abstract class AbstractActor {
   }
 
   void receive() {
-    var listeners = this.createReceive().listeners;
-    this.context.scheduler.replaceLiteners(listeners);
+    var listeners = createReceive().listeners;
+    context.scheduler.replaceLiteners(listeners);
+    context.scheduler.start();
+    preStart();
   }
 
   void preStart();

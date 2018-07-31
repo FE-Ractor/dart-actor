@@ -19,12 +19,13 @@ class ActorContext {
   ActorContext(this.name, this.self, this.system, this.sender, this.scheduler,
       this.parent, this.path) {}
 
-  ActorRef sctorOf(AbstractActor actor, String name) {
+  ActorRef actorOf(AbstractActor actor, String name) {
     var _name = name ?? new Uuid().v4();
 
     var actorRef = new ActorRef(
         actor, system, new List(), self, path + '/' + _name, _name);
     this.children[_name] = actorRef;
+    actor.receive();
     return actorRef;
   }
 

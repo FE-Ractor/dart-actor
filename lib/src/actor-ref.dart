@@ -14,7 +14,7 @@ class ActorRef {
 
   ActorRef(this._actor, this.system, this.listeners, this.parent, this.path,
       this.name) {
-    var scheduler = new ActorScheduler();
+    var scheduler = new ActorScheduler(system.eventStream, path, listeners, _actor);
     var context = new ActorContext(name, this, system, null, scheduler, parent, path);
 
     _actor.context = context;
@@ -25,7 +25,7 @@ class ActorRef {
   }
 
   tell(Object message, [ActorRef sender]) {
-    this._actor.context.sender = sender;
+    this._actor.context.sender = sender ?? null;
     this._actor.context.scheduler.callback(message);
   }
 }

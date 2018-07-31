@@ -8,3 +8,4 @@ export 'src/listener.dart';
 export 'src/actor-ref.dart';
 export 'src/actor-scheduler.dart';
 export 'src/actor-system.dart';
+export 'src/base-event.dart';

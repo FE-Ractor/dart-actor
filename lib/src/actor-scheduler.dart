@@ -10,19 +10,19 @@ class ActorScheduler {
   Object event;
   List<Listener> listeners;
   AbstractActor owner;
-  StreamSubscription _streamSubscriptions;
+  StreamSubscription _streamSubscription;
 
   ActorScheduler(this.eventStream, this.event, this.listeners, this.owner) {
 //    var reg = new RegExp(r"(/\//g)");
 //    this.event = this.event.replaceAll(reg, ".");
 
     this.defaultListeners =
-        this.listeners.firstWhere((listener) => listener.message != null);
+       listeners.length > 0 ? listeners.firstWhere((listener) => listener.message != null) : null;
   }
 
   callback(Object value) {
-    var listener = this.listeners.firstWhere(
-        (Listener listener) => listener.message != null && value is Function);
+    var listener = listeners.length > 0 ? this.listeners.firstWhere(
+        (Listener listener) => listener.message != null && value is Function) : null;
 
     try {
       if (listener != null) {
@@ -36,16 +36,16 @@ class ActorScheduler {
   }
 
   bool cancel() {
-    _streamSubscriptions.cancel();
+    _streamSubscription != null ? _streamSubscription.cancel() : null;
     return true;
   }
 
   bool isCancelled() {
-  return _streamSubscriptions.isPaused;
+  return _streamSubscription.isPaused;
   }
 
   void start() {
-    _streamSubscriptions = this.eventStream.on(event).listen(callback);
+    _streamSubscription = this.eventStream.on(event).listen(callback);
   }
 
   void restart() {

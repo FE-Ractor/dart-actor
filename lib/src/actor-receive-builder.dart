@@ -1,12 +1,15 @@
 import 'package:dart_actor/dart_actor.dart';
+import 'package:dart_actor/src/listener.dart';
 
 class ActorReceiveBuilder {
-  List<Map<String, dynamic>> listener;
+  List<Listener> listeners;
 
-  ActorReceiveBuilder match<T>(String message, dynamic callback) {
-    listener.add({ message: message, callback: callback });
+  ActorReceiveBuilder match<T>(T message, dynamic callback) {
+    listeners.add({ message: message, callback: callback } as Listener);
     return this;
   }
 
-//  match()
+  ActorReceive build() {
+    return new ActorReceive(listeners);
+  }
 }
