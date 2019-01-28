@@ -1,11 +1,9 @@
 library dart_actor;
 
-export 'src/actor.dart';
-export 'src/actor-context.dart';
-export 'src/actor-receive.dart';
-export 'src/message.dart';
+export 'src/abstract_actor.dart';
+export 'src/actor_context.dart';
+export 'src/actor_receive.dart';
 export 'src/listener.dart';
-export 'src/actor-ref.dart';
-export 'src/actor-scheduler.dart';
-export 'src/actor-system.dart';
-export 'src/base-event.dart';
+export 'src/actor_ref.dart';
+export 'src/actor_scheduler.dart';
+export 'src/actor_system.dart';

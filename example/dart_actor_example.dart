@@ -1,16 +1,13 @@
-import 'package:dart_actor/src/actor.dart';
-import 'package:dart_actor/src/actor-receive.dart';
-import 'package:dart_actor/src/actor-system.dart';
-import 'package:dart_actor/src/actor-ref.dart';
-import 'package:dart_actor/src/base-event.dart';
+import 'package:dart_actor/src/abstract_actor.dart';
+import 'package:dart_actor/src/actor_system.dart';
+import 'package:dart_actor/src/actor_ref.dart';
 
 class WhoToGreet {
   String who;
   WhoToGreet(this.who);
 }
 
-class Greet {
-}
+class Greet {}
 
 class Greeting {
   String message;
@@ -40,49 +37,25 @@ class Greeter extends AbstractActor {
 
   @override
   createReceive() {
-    var receiveBuilder = this
-        .receiveBuilder()
-        .match(WhoToGreet, _WhoToGreetCallback)
-        .match(Greet, _GreetCallBack)
-        .match(Replay, _ReplayCallback);
+    var receiveBuilder = this.receiveBuilder().match<WhoToGreet>((wtg) {
+      print('WhoToGreet has been fire: ${wtg.who}');
+      _greeting = this._message + ", " + wtg.who;
+    }).match<Greet>((_) {
+      this._printer.tell(new Greeting(this._greeting), this.getSelf());
+    }).match<Replay>((replay) {
+      print("receive message from printer: " + replay.message);
+    });
     return receiveBuilder.build();
-  }
-
-  _GreetCallBack() {
-    print('greet');
-    this._printer.tell(new Greeting(this._greeting), this.getSelf());
-  }
-
-  _WhoToGreetCallback(WhoToGreet wtg) {
-    print('WhoToGreet has been fire: ${wtg.who}');
-    _greeting = this._message + ", " + wtg.who;
-  }
-
-  _ReplayCallback(Replay replay) {
-    print("receive message from printer: " + replay.message);
   }
 }
 
 class Printer extends AbstractActor {
   @override
-  preStart() {
-    print("printer start");
-  }
-
-  @override
-  postStop() {
-    print("printer stop");
-  }
-
-  @override
-  ActorReceive createReceive() {
-    var receiveBuilder = this.receiveBuilder().match(Greeting, _callback);
-    return receiveBuilder.build();
-  }
-
-  _callback(Greeting greeting) {
-    this.getSender().tell(new Replay(greeting.message), this.getSelf());
-    print('hello');
+  createReceive() {
+    return this.receiveBuilder().match<Greeting>((greeting) {
+      this.getSender().tell(new Replay(greeting.message), this.getSelf());
+      print('hello');
+    }).build();
   }
 }
 
@@ -99,13 +72,12 @@ main() {
 
   howdyGreeter.tell(new WhoToGreet("lightbend"));
 
-  system.tell('printerActor', new Greet());
+  system.broadcast(new Greet());
 
   system.stop(howdyGreeter);
 
   howdyGreeter.tell(new WhoToGreet("sakura"));
   howdyGreeter.tell(new Greet());
-//  howdyGreeter.tell()
 
   system.terminal();
 }

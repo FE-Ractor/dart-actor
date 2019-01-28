@@ -1,8 +1,6 @@
-import 'package:dart_actor/src/message.dart';
+class Listener {
+  dynamic message;
+  dynamic Function(dynamic entity) callback;
 
-class Listener<T> {
-  Message message;
-  dynamic callback;
-
-  Listener(this.message, this.callback);
+  Listener(this.callback, [this.message = null]);
 }

@@ -1,1 +1,0 @@
-typedef Message = dynamic Function([]);

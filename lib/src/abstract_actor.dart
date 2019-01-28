@@ -1,6 +1,8 @@
 import 'package:dart_actor/dart_actor.dart';
-import 'package:dart_actor/src/actor-ref.dart';
-import 'package:dart_actor/src/actor-receive-builder.dart';
+import 'package:dart_actor/src/actor_context.dart';
+import 'package:dart_actor/src/actor_receive.dart';
+import 'package:dart_actor/src/actor_ref.dart';
+import 'package:dart_actor/src/actor_receive_builder.dart';
 
 abstract class AbstractActor {
   ActorContext context;
@@ -15,7 +17,7 @@ abstract class AbstractActor {
     return this.context.sender;
   }
 
-  ActorReceiveBuilder receiveBuilder () {
+  ActorReceiveBuilder receiveBuilder() {
     return new ActorReceiveBuilder();
   }
 
@@ -26,9 +28,9 @@ abstract class AbstractActor {
     preStart();
   }
 
-  void preStart();
+  void preStart() {}
 
-  void postStop();
+  void postStop() {}
 
   void postError(err) {
     throw err;

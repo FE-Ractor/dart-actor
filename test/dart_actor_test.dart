@@ -1,16 +1,9 @@
 //import 'package:dart_actor/dart_actor.dart';
-import 'package:test/test.dart';
+import "package:test/test.dart";
 
 void main() {
-  group('A group of tests', () {
-//    Awesome awesome;
-//
-//    setUp(() {
-//      awesome = new Awesome();
-//    });
-//
-//    test('First Test', () {
-//      expect(awesome.isAwesome, isTrue);
-//    });
+  test("String.trim() removes surrounding whitespace", () {
+    var string = "  foo ";
+    expect(string.trim(), equals("foo"));
   });
 }

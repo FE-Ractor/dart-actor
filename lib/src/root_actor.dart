@@ -1,5 +1,5 @@
-import 'package:dart_actor/src/actor.dart';
-import 'package:dart_actor/src/actor-receive.dart';
+import 'package:dart_actor/src/abstract_actor.dart';
+import 'package:dart_actor/src/actor_receive.dart';
 
 class RootActor extends AbstractActor {
   ActorReceive createReceive() {
