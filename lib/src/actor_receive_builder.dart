@@ -6,9 +6,7 @@ class ActorReceiveBuilder {
 
   ActorReceiveBuilder match<T>(dynamic Function(T) callback) {
     if (T == dynamic) {
-      _listeners.add(new Listener((value) {
-        return callback(value);
-      }));
+      this.matchAny(callback);
     } else {
       _listeners.add(new Listener((value) {
         return callback(value);

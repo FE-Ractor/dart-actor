@@ -32,11 +32,11 @@ class ActorScheduler {
   }
 
   void cancel() {
-    this.subscription.cancel();
+    subscription.cancel();
   }
 
   void start() {
-    this.subscription = this.eventBus.on().listen(callback);
+    subscription = this.eventBus.on().listen(callback);
   }
 
   void restart() {
