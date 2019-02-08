@@ -23,8 +23,9 @@ class ActorSystem {
     return _rootActorRef;
   }
 
-  ActorRef<T> get<T extends AbstractActor>(T Function() token) {
-    return _rootActorRef.getInstance().context.get(token);
+  // TODO: complete type
+  ActorRef<dynamic> get<T extends AbstractActor>() {
+    return _rootActorRef.getInstance().context.get<T>();
   }
 
   void dispatch(dynamic message) {

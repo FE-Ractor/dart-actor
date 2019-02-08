@@ -1,5 +1,6 @@
 //import 'package:dart_actor/dart_actor.dart';
 import 'package:dart_actor/dart_actor.dart';
+import 'package:dart_actor/src/actor_receive_builder.dart';
 import "package:test/test.dart";
 
 class Action {
@@ -8,12 +9,6 @@ class Action {
 }
 
 class TestAny extends AbstractActor {
-  preStart() {
-    this.context.system.eventBus.on<Action>().listen((action) {
-      expect(action.message, "hello");
-    });
-  }
-
   createReceive() {
     return this.receiveBuilder().build();
   }
@@ -22,7 +17,19 @@ class TestAny extends AbstractActor {
 void main() {
   test("matchAny", () {
     var system = ActorSystem("testSystem");
-    system.actorOf(TestAny());
+    var store = TestAny();
+    system.actorOf(store);
+    var receive = ActorReceiveBuilder.create().matchAny((action) {
+      expect(action.message, "hello");
+    }).build();
+    store.context.become(receive);
     system.broadcast(Action("hello"));
+  });
+
+  test("get", () {
+    var system = ActorSystem("testSystem");
+    system.actorOf(TestAny());
+    TestAny instance = system.get<TestAny>().getInstance();
+    expect(instance is TestAny, true);
   });
 }

@@ -5,7 +5,7 @@ import 'package:dart_actor/src/actor_scheduler.dart';
 import 'package:dart_actor/src/actor_context.dart';
 
 class ActorRef<T extends AbstractActor> {
-  T _actor;
+  covariant AbstractActor _actor;
   ActorSystem system;
   List<Listener> listeners;
   ActorRef parent;
@@ -21,7 +21,7 @@ class ActorRef<T extends AbstractActor> {
     _actor.context = context;
   }
 
-  AbstractActor getInstance() {
+  T getInstance() {
     return this._actor;
   }
 

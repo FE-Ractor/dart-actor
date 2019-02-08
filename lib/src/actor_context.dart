@@ -42,7 +42,8 @@ class ActorContext {
     return child ?? null;
   }
 
-  ActorRef<T> get<T extends AbstractActor>(T Function() token) {
+  // TODO: complete type annotation
+  ActorRef<dynamic> get<T extends AbstractActor>() {
     var queue = this.children.values.toList();
     while (!queue.isEmpty) {
       var ref = queue.removeAt(0);
