@@ -12,7 +12,7 @@ class ActorContext {
   String name;
   ActorRef self;
   ActorSystem system;
-  dynamic sender;
+  ActorRef sender;
   ActorScheduler scheduler;
   ActorRef parent;
   String path;
@@ -30,16 +30,31 @@ class ActorContext {
     return actorRef;
   }
 
-  dynamic child(String name) {
+  ActorRef child(String name) {
     var child = this.children[name];
 
     if (child == null) {
       for (var _child in this.children.values) {
         var targetActor = _child.getContext().child(name);
-        if (targetActor) return targetActor;
+        if (targetActor != null) return targetActor;
       }
     }
     return child ?? null;
+  }
+
+  ActorRef<T> get<T extends AbstractActor>(T Function() token) {
+    var queue = this.children.values.toList();
+    while (!queue.isEmpty) {
+      var ref = queue.removeAt(0);
+      var instance = ref.getInstance();
+      if (instance.context.children.length > 0) {
+        queue.addAll(instance.context.children.values);
+      }
+      if (instance is T) {
+        return ref;
+      }
+    }
+    return null;
   }
 
   void stop([ActorRef actorRef]) {

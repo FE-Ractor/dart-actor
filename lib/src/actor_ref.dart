@@ -4,8 +4,8 @@ import 'package:dart_actor/src/actor_system.dart';
 import 'package:dart_actor/src/actor_scheduler.dart';
 import 'package:dart_actor/src/actor_context.dart';
 
-class ActorRef {
-  AbstractActor _actor;
+class ActorRef<T extends AbstractActor> {
+  T _actor;
   ActorSystem system;
   List<Listener> listeners;
   ActorRef parent;

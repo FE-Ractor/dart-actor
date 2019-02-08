@@ -1,6 +1,6 @@
 name: dart_actor
 description: experimental akka actor implementation for using in dart.
-version: 0.0.1
+version: 0.0.2
 homepage: https://github.com/FE-Ractor/dart-actor
 authors: [Aaaaash <binshao54@gmail.com>, Corol <akira.binjie@gmail.com>]
 

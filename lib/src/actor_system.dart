@@ -19,8 +19,20 @@ class ActorSystem {
     return new ActorSystem(name);
   }
 
+  ActorRef getRoot() {
+    return _rootActorRef;
+  }
+
+  ActorRef<T> get<T extends AbstractActor>(T Function() token) {
+    return _rootActorRef.getInstance().context.get(token);
+  }
+
+  void dispatch(dynamic message) {
+    broadcast(message);
+  }
+
   void broadcast(dynamic message) {
-    this.eventBus.fire(message);
+    eventBus.fire(message);
   }
 
   ActorRef actorOf(AbstractActor actor, [String name]) {
@@ -33,11 +45,7 @@ class ActorSystem {
   }
 
   void terminal() {
-    this.eventBus.destroy();
+    eventBus.destroy();
     _rootActorRef.getContext().children.clear();
-  }
-
-  ActorRef getRoot() {
-    return _rootActorRef;
   }
 }
