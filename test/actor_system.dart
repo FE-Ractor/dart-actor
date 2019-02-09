@@ -29,7 +29,7 @@ void main() {
   test("get", () {
     var system = ActorSystem("testSystem");
     system.actorOf(TestAny());
-    TestAny instance = system.get<TestAny>().getInstance();
+    var instance = system.get(TestAny).getInstance();
     expect(instance is TestAny, true);
   });
 }

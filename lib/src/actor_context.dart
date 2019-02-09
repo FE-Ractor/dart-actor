@@ -20,9 +20,8 @@ class ActorContext {
   ActorContext(this.name, this.self, this.system, this.sender, this.scheduler,
       this.parent, this.path) {}
 
-  ActorRef actorOf(AbstractActor actor, String name) {
+  ActorRef<T> actorOf<T extends AbstractActor>(T actor, [String name]) {
     var _name = name ?? new Uuid().v4();
-
     var actorRef = new ActorRef(
         actor, system, new List<Listener>(), self, path + '/' + _name, _name);
     this.children[_name] = actorRef;
@@ -43,7 +42,7 @@ class ActorContext {
   }
 
   // TODO: complete type annotation
-  ActorRef<dynamic> get<T extends AbstractActor>() {
+  ActorRef<T> get<T extends AbstractActor>(Type token) {
     var queue = this.children.values.toList();
     while (!queue.isEmpty) {
       var ref = queue.removeAt(0);
@@ -51,7 +50,7 @@ class ActorContext {
       if (instance.context.children.length > 0) {
         queue.addAll(instance.context.children.values);
       }
-      if (instance is T) {
+      if (instance.runtimeType == token) {
         return ref;
       }
     }
