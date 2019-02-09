@@ -22,7 +22,7 @@ class ActorContext {
 
   ActorRef<T> actorOf<T extends AbstractActor>(T actor, [String name]) {
     var _name = name ?? new Uuid().v4();
-    var actorRef = new ActorRef(
+    var actorRef = new ActorRef<T>(
         actor, system, new List<Listener>(), self, path + '/' + _name, _name);
     this.children[_name] = actorRef;
     actor.receive();
