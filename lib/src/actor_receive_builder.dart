@@ -12,7 +12,7 @@ class ActorReceiveBuilder {
     if (T == dynamic) {
       this.matchAny(callback);
     } else {
-      _listeners.add(new Listener((value) {
+      _listeners.add(new Listener(ListenerType.match, (value) {
         return callback(value);
       }, T));
     }
@@ -20,7 +20,22 @@ class ActorReceiveBuilder {
   }
 
   ActorReceiveBuilder matchAny(dynamic Function(dynamic) callback) {
-    _listeners.add(new Listener((value) {
+    _listeners.add(new Listener(ListenerType.match, (value) {
+      return callback(value);
+    }));
+    return this;
+  }
+
+  /// Ask pattern. It's another way to let you communicate with Store.
+  /// ```dart
+  /// anyStore.ask(Message())
+  /// 
+  /// .answer<Message>((message) {
+  ///   return 'reply anything as you like.';
+  /// })
+  /// ```
+  ActorReceiveBuilder answer<T>(Future<dynamic> Function(T) callback) {
+    _listeners.add(new Listener(ListenerType.answer, (value) {
       return callback(value);
     }));
     return this;

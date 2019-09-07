@@ -33,4 +33,18 @@ class ActorRef<T extends AbstractActor> {
     this._actor.context.sender = sender ?? null;
     this._actor.context.scheduler.callback(message);
   }
+
+  Future<R> ask<R>(dynamic message, [ActorRef sender]) {
+    this._actor.context.sender = sender ?? null;
+    final response = this._actor.context.scheduler.callback(message);
+
+    if (response is Future) {
+      if (response is Future<R>) {
+        return response;
+      }
+      throw "${_actor.runtimeType}.answer<${message.runtimeType}> returns ${response.runtimeType} while ask expects $R";
+    } else {
+      throw "Please use .answer to catch ${message.runtimeType}";
+    }
+  }
 }

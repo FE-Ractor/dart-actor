@@ -15,16 +15,17 @@ class ActorScheduler {
 
   ActorScheduler(this.eventBus, this.event, this.listeners, this.owner) {}
 
-  callback(dynamic value) {
-    var listener = this.listeners.firstWhere(
-        (Listener listener) => value.runtimeType == listener.message,
+  callback(dynamic message) {
+    final listener = this.listeners.firstWhere(
+        (Listener listener) => message.runtimeType == listener.message,
         orElse: () => null);
     try {
       if (listener != null) {
-        return listener.callback(value);
+        return listener.callback(message);
       }
+
       if (this.defaultListener != null) {
-        return this.defaultListener.callback(value);
+        return this.defaultListener.callback(message);
       }
     } catch (e) {
       this.owner.postError(e);
