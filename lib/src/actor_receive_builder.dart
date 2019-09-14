@@ -29,7 +29,7 @@ class ActorReceiveBuilder {
   /// Ask pattern. It's another way to let you communicate with Store.
   /// ```dart
   /// anyStore.ask(Message())
-  /// 
+  ///
   /// .answer<Message>((message) {
   ///   return 'reply anything as you like.';
   /// })
@@ -37,7 +37,7 @@ class ActorReceiveBuilder {
   ActorReceiveBuilder answer<T>(Future<dynamic> Function(T) callback) {
     _listeners.add(new Listener(ListenerType.answer, (value) {
       return callback(value);
-    }));
+    }, T));
     return this;
   }
 
