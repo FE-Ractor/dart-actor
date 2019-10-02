@@ -1,3 +1,7 @@
+## 0.1.3
+
+- chore: upgrade uuid to 2.x
+
 ## 0.1.2
 
 - fix: answer forgot add message.
