@@ -16,8 +16,8 @@ class Test extends AbstractActor {
 void main() {
   test("get", () {
     var system = ActorSystem("testSystem");
-    system.actorOf(Test()).getInstance();
-    Test instance = system.getRoot().getContext().get(Test).getInstance();
+    system.actorOf(Test()).instance;
+    Test instance = system.getRoot().context.get(Test).instance;
     expect(instance is Test, true);
   });
 }

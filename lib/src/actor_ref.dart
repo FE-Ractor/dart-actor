@@ -21,8 +21,20 @@ class ActorRef<T extends AbstractActor> {
     _actor.context = context;
   }
 
+  T get actor {
+    return this._actor;
+  }
+
+  T get instance {
+    return this._actor;
+  }
+
   T getInstance() {
     return this._actor;
+  }
+
+  ActorContext get context {
+    return this._actor.context;
   }
 
   ActorContext getContext() {

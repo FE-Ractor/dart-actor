@@ -1,3 +1,7 @@
+## 0.1.4
+
+- add some convenient method `.instance`, `.context` for `ActorRef`.
+
 ## 0.1.3
 
 - chore: upgrade uuid to 2.x
